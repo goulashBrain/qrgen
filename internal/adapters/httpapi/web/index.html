@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>qrgen</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 32rem; margin: 2rem auto; padding: 0 1rem; }
+    fieldset { margin-bottom: 2rem; border-radius: 6px; }
+    label { display: block; margin: .5rem 0; }
+    input { width: 100%; padding: .4rem; box-sizing: border-box; }
+    button { margin-top: 1rem; padding: .5rem 1rem; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>vCard QR generator</h1>
+
+  <fieldset>
+    <legend>Single contact</legend>
+    <form method="post" action="api/qr" target="_blank">
+      <label>First name <input name="first_name" required></label>
+      <label>Last name <input name="last_name"></label>
+      <label>Organization <input name="org"></label>
+      <label>Title <input name="title"></label>
+      <label>Phone <input name="phone" type="tel" placeholder="+39..."></label>
+      <label>Email <input name="email" type="email"></label>
+      <button type="submit">Generate PNG</button>
+    </form>
+  </fieldset>
+
+  <fieldset>
+    <legend>Batch from CSV</legend>
+    <form method="post" action="api/batch" enctype="multipart/form-data">
+      <label>CSV file <input type="file" name="file" accept=".csv,text/csv" required></label>
+      <label>Separator <input name="sep" value=";" maxlength="3"></label>
+      <button type="submit">Download ZIP</button>
+    </form>
+  </fieldset>
+</body>
+</html>
