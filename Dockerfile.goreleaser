@@ -1,0 +1,6 @@
+FROM gcr.io/distroless/static-debian12:nonroot
+ARG TARGETPLATFORM
+COPY $TARGETPLATFORM/qrgen /qrgen
+EXPOSE 8080
+USER nonroot:nonroot
+ENTRYPOINT ["/qrgen"]
