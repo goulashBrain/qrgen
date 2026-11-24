@@ -40,7 +40,7 @@ archives:
 dockers_v2:
   - ids: [qrgen]
     dockerfile: Dockerfile.goreleaser
-    images: ["ghcr.io/goulashBrain/qrgen"]      # lowercase GitHub username
+    images: ["ghcr.io/goulashbrain/qrgen"]      # lowercase GitHub username
     tags: ["{{ .Version }}", "latest"]
     platforms: [linux/amd64, linux/arm64]
 
