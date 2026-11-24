@@ -1,0 +1,8 @@
+.git 
+dist/ 
+bin/ 
+input/ 
+qrcodes*/ 
+*.csv 
+*.zip 
+*.png
