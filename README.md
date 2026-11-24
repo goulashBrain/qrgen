@@ -59,8 +59,8 @@ Notes:
 Download the archive for your platform from the **Releases** page and verify it:
 
 ```bash
-V=0.2.0; ARCH=amd64            # arm64 for Raspberry Pi
-gh release download v$V -R <you>/qrgen -p "qrgen_${V}_linux_${ARCH}.tar.gz" -p checksums.txt
+V=0.1.1; ARCH=amd64            # arm64 for Raspberry Pi
+gh release download v$V -R goulashbrain/qrgen -p "qrgen_${V}_linux_${ARCH}.tar.gz" -p checksums.txt
 sha256sum --ignore-missing -c checksums.txt
 tar -xzf qrgen_${V}_linux_${ARCH}.tar.gz qrgen
 sudo install -m 0755 qrgen /usr/local/bin/qrgen
@@ -74,14 +74,14 @@ On Windows, download `qrgen_<version>_windows_amd64.zip`, extract it and run `qr
 Requires Go (version per `go.mod`).
 
 ```bash
-git clone git@github.com:<you>/qrgen.git && cd qrgen
+git clone git@github.com:goulashbrain/qrgen.git && cd qrgen
 make build                     # -> bin/qrgen
 ```
 
 ### Container image
 
 ```bash
-docker run --rm -p 8080:8080 ghcr.io/<you>/qrgen:latest
+docker run --rm -p 8080:8080 ghcr.io/goulashbrain/qrgen:latest
 ```
 
 ---
@@ -191,7 +191,7 @@ kubectl rollout status deployment/qrgen
 **Update to a new version:**
 
 ```bash
-kubectl set image deployment/qrgen qrgen=ghcr.io/<you>/qrgen:0.2.0
+kubectl set image deployment/qrgen qrgen=ghcr.io/goulashbrain/qrgen:0.1.1
 kubectl rollout status deployment/qrgen
 kubectl rollout undo deployment/qrgen      # rollback if needed
 ```
@@ -202,7 +202,7 @@ If the ghcr.io package is private, create a pull secret and reference it in the 
 
 ```bash
 kubectl create secret docker-registry ghcr \
-  --docker-server=ghcr.io --docker-username=<you> --docker-password=<token-with-read:packages>
+  --docker-server=ghcr.io --docker-username=goulashbrain --docker-password=<token-with-read:packages>
 ```
 
 ### Windows
@@ -277,7 +277,7 @@ Each release produces:
 - `qrgen_<version>_linux_{amd64,arm64}.tar.gz`
 - `qrgen_<version>_windows_{amd64,arm64}.zip`
 - `checksums.txt`
-- Container image `ghcr.io/<you>/qrgen:<version>` and `:latest` (linux/amd64, linux/arm64)
+- Container image `ghcr.io/goulashbrain/qrgen:<version>` and `:latest` (linux/amd64, linux/arm64)
 
 Archives include this README and the `deploy/` folder.
 
