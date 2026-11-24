@@ -4,3 +4,5 @@
 /qrcodes/
 /bin/
 *.zip
+# Added by goreleaser init:
+dist/

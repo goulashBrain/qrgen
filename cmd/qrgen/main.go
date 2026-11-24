@@ -6,6 +6,7 @@ import (
 	"context"
 	"errors"
 	"flag"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -23,7 +24,14 @@ import (
 
 const maxBatch = 1000
 
+var (
+	version = "dev"
+	commit  = "none"
+	date    = "unknown"
+)
+
 func main() {
+	showVersion := flag.Bool("version", false, "print version and exit")
 	addr := flag.String("addr", envOr("QRGEN_ADDR", ":8080"), "listen address (server mode)")
 	in := flag.String("in", "", "CLI mode: input folder with CSV files (empty = server mode)")
 	out := flag.String("out", "./qrcodes", "CLI mode: output folder")
@@ -35,6 +43,12 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	if *showVersion {
+		fmt.Printf("qrgen %s (commit %s, built %s)\n", version, commit, date)
+		return
+	}
+	log.Printf("qrgen %s starting", version)
 
 	// Wiring: driven adapters -> core service.
 	svc := service.NewQrService(vcard.New(), qrpng.New(*size), maxBatch)
