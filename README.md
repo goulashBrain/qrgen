@@ -32,7 +32,7 @@ The header is required. Columns are case-insensitive and can be in any order. On
 
 ```csv
 first_name;last_name;org;title;phone;email
-Leonardo;Simoncelli;Dolomiti Energia;Project Manager;+393400000000;leonardo@example.com
+Anna;Bianchi;Example Srl;Engineer;+393400000000;anna.bianchi@example.com
 ```
 
 | Column | vCard field |
@@ -96,7 +96,7 @@ qrgen -in ./input -out ./qrcodes
 # generated 1 QR codes in ./qrcodes
 ```
 
-Output files are named `NNN_lastname_firstname.png`, e.g. `001_simoncelli_leonardo.png`.
+Output files are named `NNN_lastname_firstname.png`, e.g. `001_bianchi_anna.png`.
 
 ```bash
 qrgen -in ./input -out ./qrcodes -sep ',' -size 1024   # comma CSV, larger images
@@ -127,7 +127,7 @@ qrgen
 | `GET` | `/healthz` | | `ok` |
 
 ```bash
-curl -d first_name=Leonardo -d last_name=Simoncelli http://localhost:8080/api/qr -o me.png
+curl -d first_name=Anna -d last_name=Bianchi http://localhost:8080/api/qr -o me.png
 curl -F file=@contacts.csv -F sep=';' http://localhost:8080/api/batch -o qrcodes.zip
 ```
 

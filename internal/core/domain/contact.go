@@ -51,7 +51,7 @@ func (c Contact) FullName() string {
 
 var unsafeChars = regexp.MustCompile(`[^a-z0-9_-]+`)
 
-// Slug returns a filesystem-safe identifier like "simoncelli_leonardo".
+// Slug returns a filesystem-safe identifier like "bianchi_anna".
 func (c Contact) Slug() string {
 	s := strings.ToLower(c.LastName + "_" + c.FirstName)
 	s = strings.Trim(unsafeChars.ReplaceAllString(s, "_"), "_")
