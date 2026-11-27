@@ -32,7 +32,7 @@ func (m *memSink) Save(_ context.Context, c domain.QRCode) error {
 func TestGenerateAll(t *testing.T) {
 	svc := service.NewQrService(fakePayload{}, fakeRenderer{}, 10)
 	sink := &memSink{}
-	repo := fakeRepo{{FirstName: "Leonardo", LastName: "Simoncelli"}, {FirstName: "Mario", LastName: "Rossi"}}
+	repo := fakeRepo{{FirstName: "Anna", LastName: "Bianchi"}, {FirstName: "Mario", LastName: "Rossi"}}
 
 	n, err := svc.GenerateAll(context.Background(), repo, sink)
 	if err != nil {
@@ -41,7 +41,7 @@ func TestGenerateAll(t *testing.T) {
 	if n != 2 || len(sink.codes) != 2 {
 		t.Fatalf("want 2 codes, got n=%d saved=%d", n, len(sink.codes))
 	}
-	if got := sink.codes[0].Name; got != "001_simoncelli_leonardo.png" {
+	if got := sink.codes[0].Name; got != "001_bianchi_anna.png" {
 		t.Errorf("unexpected name %q", got)
 	}
 }
